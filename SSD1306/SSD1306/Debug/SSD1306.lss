@@ -1,0 +1,448 @@
+
+SSD1306.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000292  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000023e  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000292  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000002c4  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000090  00000000  00000000  00000300  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000c84  00000000  00000000  00000390  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000835  00000000  00000000  00001014  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000053c  00000000  00000000  00001849  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000f0  00000000  00000000  00001d88  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000479  00000000  00000000  00001e78  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000219  00000000  00000000  000022f1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000060  00000000  00000000  0000250a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a0 30       	cpi	r26, 0x00	; 0
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 8e 00 	call	0x11c	; 0x11c <main>
+  88:	0c 94 1d 01 	jmp	0x23a	; 0x23a <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <i2c_init>:
+
+/* Inicializa I2C (TWI) */
+void i2c_init(void)
+{
+	/* SDA (PC4) e SCL (PC5) como INPUT */
+	DDRC &= ((1<<PORTC4)|(1<<PORTC5));
+  90:	87 b1       	in	r24, 0x07	; 7
+  92:	80 73       	andi	r24, 0x30	; 48
+  94:	87 b9       	out	0x07, r24	; 7
+	PORTC |= (1<<PORTC4)|(1<<PORTC5);   // pull-up
+  96:	88 b1       	in	r24, 0x08	; 8
+  98:	80 63       	ori	r24, 0x30	; 48
+  9a:	88 b9       	out	0x08, r24	; 8
+
+	/* Prescaler = 1 */
+	TWSR = 0x00;
+  9c:	10 92 b9 00 	sts	0x00B9, r1	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7f80b9>
+
+	/* Bit rate */
+	TWBR = ((F_CPU / I2C_FREQ) - 16) / 2;
+  a0:	80 e2       	ldi	r24, 0x20	; 32
+  a2:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__TEXT_REGION_LENGTH__+0x7f80b8>
+
+	/* Enable TWI */
+	TWCR = (1<<TWEN);
+  a6:	84 e0       	ldi	r24, 0x04	; 4
+  a8:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+  ac:	08 95       	ret
+
+000000ae <i2c_start>:
+
+/* START + SLA+W */
+i2c_status_t i2c_start(uint8_t address)
+{
+	/* START */
+	TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
+  ae:	94 ea       	ldi	r25, 0xA4	; 164
+  b0:	90 93 bc 00 	sts	0x00BC, r25	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+	while (!(TWCR & (1<<TWINT)));
+  b4:	90 91 bc 00 	lds	r25, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+  b8:	99 23       	and	r25, r25
+  ba:	e4 f7       	brge	.-8      	; 0xb4 <i2c_start+0x6>
+
+	if ((TWSR & 0xF8) != 0x08)   // START transmitted
+  bc:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7f80b9>
+  c0:	98 7f       	andi	r25, 0xF8	; 248
+  c2:	98 30       	cpi	r25, 0x08	; 8
+  c4:	89 f4       	brne	.+34     	; 0xe8 <i2c_start+0x3a>
+	return I2C_ERR_START;
+
+	/* SLA+W */
+	TWDR = (address<<1);      // shift automático
+  c6:	88 0f       	add	r24, r24
+  c8:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7f80bb>
+	TWCR = (1<<TWINT)|(1<<TWEN);
+  cc:	84 e8       	ldi	r24, 0x84	; 132
+  ce:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+	while (!(TWCR & (1<<TWINT)));
+  d2:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+  d6:	88 23       	and	r24, r24
+  d8:	e4 f7       	brge	.-8      	; 0xd2 <i2c_start+0x24>
+
+	if ((TWSR & 0xF8) != 0x18)   // SLA+W ACK
+  da:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7f80b9>
+  de:	88 7f       	andi	r24, 0xF8	; 248
+  e0:	88 31       	cpi	r24, 0x18	; 24
+  e2:	21 f0       	breq	.+8      	; 0xec <i2c_start+0x3e>
+	return I2C_ERR_SLA_ACK;
+  e4:	82 e0       	ldi	r24, 0x02	; 2
+  e6:	08 95       	ret
+	/* START */
+	TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
+	while (!(TWCR & (1<<TWINT)));
+
+	if ((TWSR & 0xF8) != 0x08)   // START transmitted
+	return I2C_ERR_START;
+  e8:	81 e0       	ldi	r24, 0x01	; 1
+  ea:	08 95       	ret
+	while (!(TWCR & (1<<TWINT)));
+
+	if ((TWSR & 0xF8) != 0x18)   // SLA+W ACK
+	return I2C_ERR_SLA_ACK;
+
+	return I2C_OK;
+  ec:	80 e0       	ldi	r24, 0x00	; 0
+}
+  ee:	08 95       	ret
+
+000000f0 <i2c_write>:
+
+/* Envia 1 byte */
+i2c_status_t i2c_write(uint8_t data)
+{
+	TWDR = data;
+  f0:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7f80bb>
+	TWCR = (1<<TWINT)|(1<<TWEN);
+  f4:	84 e8       	ldi	r24, 0x84	; 132
+  f6:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+	while (!(TWCR & (1<<TWINT)));
+  fa:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+  fe:	88 23       	and	r24, r24
+ 100:	e4 f7       	brge	.-8      	; 0xfa <i2c_write+0xa>
+
+	if ((TWSR & 0xF8) != 0x28)   // DATA ACK
+ 102:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7f80b9>
+ 106:	88 7f       	andi	r24, 0xF8	; 248
+ 108:	88 32       	cpi	r24, 0x28	; 40
+ 10a:	11 f0       	breq	.+4      	; 0x110 <i2c_write+0x20>
+	return I2C_ERR_DATA_ACK;
+ 10c:	83 e0       	ldi	r24, 0x03	; 3
+ 10e:	08 95       	ret
+
+	return I2C_OK;
+ 110:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 112:	08 95       	ret
+
+00000114 <i2c_stop>:
+
+/* STOP */
+void i2c_stop(void)
+{
+	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWSTO);
+ 114:	84 e9       	ldi	r24, 0x94	; 148
+ 116:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 11a:	08 95       	ret
+
+0000011c <main>:
+#include "i2c.h"
+#include "ssd1306.h"
+
+int main(void)
+{
+	i2c_init();
+ 11c:	0e 94 48 00 	call	0x90	; 0x90 <i2c_init>
+	ssd1306_init();
+ 120:	0e 94 c5 00 	call	0x18a	; 0x18a <ssd1306_init>
+ 124:	ff cf       	rjmp	.-2      	; 0x124 <main+0x8>
+
+00000126 <GLCD_Send>:
+}
+
+
+/* Envia comando */
+void GLCD_Send(const uint8_t Control, uint8_t *Data, const uint8_t Length)
+{
+ 126:	0f 93       	push	r16
+ 128:	1f 93       	push	r17
+ 12a:	cf 93       	push	r28
+ 12c:	df 93       	push	r29
+ 12e:	c8 2f       	mov	r28, r24
+ 130:	8b 01       	movw	r16, r22
+ 132:	d4 2f       	mov	r29, r20
+		}
+		#endif
+		*/
+
+		//Transmit SLA+W
+		i2c_write(i2c_start(SSD1306_ADDR));
+ 134:	8c e3       	ldi	r24, 0x3C	; 60
+ 136:	0e 94 57 00 	call	0xae	; 0xae <i2c_start>
+ 13a:	0e 94 78 00 	call	0xf0	; 0xf0 <i2c_write>
+		}
+		#endif
+		*/
+
+		//Transmit control byte
+		i2c_write(Control);
+ 13e:	8c 2f       	mov	r24, r28
+ 140:	0e 94 78 00 	call	0xf0	; 0xf0 <i2c_write>
+			break;
+		}
+		#endif
+		*/
+
+		for (i = 0 ; i < Length ; i++)
+ 144:	c0 e0       	ldi	r28, 0x00	; 0
+ 146:	07 c0       	rjmp	.+14     	; 0x156 <GLCD_Send+0x30>
+		{
+			//Transmit data
+			i2c_write(Data[i]);}
+ 148:	f8 01       	movw	r30, r16
+ 14a:	ec 0f       	add	r30, r28
+ 14c:	f1 1d       	adc	r31, r1
+ 14e:	80 81       	ld	r24, Z
+ 150:	0e 94 78 00 	call	0xf0	; 0xf0 <i2c_write>
+			break;
+		}
+		#endif
+		*/
+
+		for (i = 0 ; i < Length ; i++)
+ 154:	cf 5f       	subi	r28, 0xFF	; 255
+ 156:	cd 17       	cp	r28, r29
+ 158:	b8 f3       	brcs	.-18     	; 0x148 <GLCD_Send+0x22>
+		*/
+	//}
+	//while (0);
+	
+	//Transmit STOP signal
+	i2c_stop();
+ 15a:	0e 94 8a 00 	call	0x114	; 0x114 <i2c_stop>
+}
+ 15e:	df 91       	pop	r29
+ 160:	cf 91       	pop	r28
+ 162:	1f 91       	pop	r17
+ 164:	0f 91       	pop	r16
+ 166:	08 95       	ret
+
+00000168 <GLCD_SendCommand>:
+#include "ssd1306.h"
+#include "i2c.h"
+#include "font5x7.h"
+uint8_t _Buffer[__GLCD_Screen_Width * __GLCD_Screen_Lines];
+
+void GLCD_SendCommand(uint8_t Command){
+ 168:	cf 93       	push	r28
+ 16a:	df 93       	push	r29
+ 16c:	1f 92       	push	r1
+ 16e:	cd b7       	in	r28, 0x3d	; 61
+ 170:	de b7       	in	r29, 0x3e	; 62
+ 172:	89 83       	std	Y+1, r24	; 0x01
+GLCD_Send(0x00, &Command, 1);
+ 174:	41 e0       	ldi	r20, 0x01	; 1
+ 176:	be 01       	movw	r22, r28
+ 178:	6f 5f       	subi	r22, 0xFF	; 255
+ 17a:	7f 4f       	sbci	r23, 0xFF	; 255
+ 17c:	80 e0       	ldi	r24, 0x00	; 0
+ 17e:	0e 94 93 00 	call	0x126	; 0x126 <GLCD_Send>
+}
+ 182:	0f 90       	pop	r0
+ 184:	df 91       	pop	r29
+ 186:	cf 91       	pop	r28
+ 188:	08 95       	ret
+
+0000018a <ssd1306_init>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 18a:	87 ea       	ldi	r24, 0xA7	; 167
+ 18c:	91 e6       	ldi	r25, 0x61	; 97
+ 18e:	01 97       	sbiw	r24, 0x01	; 1
+ 190:	f1 f7       	brne	.-4      	; 0x18e <ssd1306_init+0x4>
+ 192:	00 c0       	rjmp	.+0      	; 0x194 <ssd1306_init+0xa>
+ 194:	00 00       	nop
+
+/* Inicialização mínima funcional */
+void ssd1306_init(void)
+{
+	_delay_ms(100); // tempo obrigatório após power-on
+	GLCD_SendCommand(__GLCD_Command_Display_Off);				//0xAE
+ 196:	8e ea       	ldi	r24, 0xAE	; 174
+ 198:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	
+	GLCD_SendCommand(__GLCD_Command_Display_Clock_Div_Ratio_Set);		//0xD5
+ 19c:	85 ed       	ldi	r24, 0xD5	; 213
+ 19e:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(0xF0);							//Suggest ratio
+ 1a2:	80 ef       	ldi	r24, 0xF0	; 240
+ 1a4:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	
+	GLCD_SendCommand(__GLCD_Command_Multiplex_Radio_Set);			//0xA8
+ 1a8:	88 ea       	ldi	r24, 0xA8	; 168
+ 1aa:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(__GLCD_Screen_Height - 1);
+ 1ae:	8f e7       	ldi	r24, 0x7F	; 127
+ 1b0:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	
+	GLCD_SendCommand(__GLCD_Command_Display_Offset_Set);			//0xD3
+ 1b4:	83 ed       	ldi	r24, 0xD3	; 211
+ 1b6:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(0x00);							//No offset
+ 1ba:	80 e0       	ldi	r24, 0x00	; 0
+ 1bc:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+
+	GLCD_SendCommand(__GLCD_Command_Charge_Pump_Set);			//0x8D
+ 1c0:	8d e8       	ldi	r24, 0x8D	; 141
+ 1c2:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(0x14);							//Enable charge pump
+ 1c6:	84 e1       	ldi	r24, 0x14	; 20
+ 1c8:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+
+	GLCD_SendCommand(__GLCD_Command_Display_Start_Line_Set | 0x00);		//0x40 | Start line
+ 1cc:	80 e4       	ldi	r24, 0x40	; 64
+ 1ce:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	
+	GLCD_SendCommand(__GLCD_Command_Memory_Addressing_Set);			//0x20
+ 1d2:	80 e2       	ldi	r24, 0x20	; 32
+ 1d4:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(0x00);							//Horizontal Addressing - Operate like KS0108
+ 1d8:	80 e0       	ldi	r24, 0x00	; 0
+ 1da:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	
+	GLCD_SendCommand(__GLCD_Command_Segment_Remap_Set | 0x01);		//0xA0 - Left towards Right
+ 1de:	81 ea       	ldi	r24, 0xA1	; 161
+ 1e0:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+
+	GLCD_SendCommand(__GLCD_Command_Com_Output_Scan_Dec);			//0xC8 - Up towards Down
+ 1e4:	88 ec       	ldi	r24, 0xC8	; 200
+ 1e6:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+
+	GLCD_SendCommand(__GLCD_Command_Com_Pins_Set);				//0xDA
+ 1ea:	8a ed       	ldi	r24, 0xDA	; 218
+ 1ec:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	
+	#if (GLCD_Size == GLCD_128_64)
+	GLCD_SendCommand(0x12);						//Sequential COM pin configuration
+ 1f0:	82 e1       	ldi	r24, 0x12	; 18
+ 1f2:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(0x02);						//Alternative COM pin configuration
+	#elif (GLCD_Size == GLCD_96_16)
+	GLCD_SendCommand(0x02);						//Alternative COM pin configuration
+	#endif
+	
+	GLCD_SendCommand(__GLCD_Command_Constrast_Set);				//0x81
+ 1f6:	81 e8       	ldi	r24, 0x81	; 129
+ 1f8:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(0xFF);
+ 1fc:	8f ef       	ldi	r24, 0xFF	; 255
+ 1fe:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+
+	GLCD_SendCommand(__GLCD_Command_Precharge_Period_Set);			//0xD9
+ 202:	89 ed       	ldi	r24, 0xD9	; 217
+ 204:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(0xF1);
+ 208:	81 ef       	ldi	r24, 0xF1	; 241
+ 20a:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+
+	GLCD_SendCommand(__GLCD_Command_VCOMH_Deselect_Level_Set);		//0xDB
+ 20e:	8b ed       	ldi	r24, 0xDB	; 219
+ 210:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(0x20);
+ 214:	80 e2       	ldi	r24, 0x20	; 32
+ 216:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+
+	GLCD_SendCommand(__GLCD_Command_Display_All_On_Resume);			//0xA4
+ 21a:	84 ea       	ldi	r24, 0xA4	; 164
+ 21c:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(__GLCD_Command_Display_Normal);			//0xA6
+ 220:	86 ea       	ldi	r24, 0xA6	; 166
+ 222:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(__GLCD_Command_Scroll_Deactivate);			//0x2E
+ 226:	8e e2       	ldi	r24, 0x2E	; 46
+ 228:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(__GLCD_Command_Display_On);
+ 22c:	8f ea       	ldi	r24, 0xAF	; 175
+ 22e:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+	GLCD_SendCommand(0xA7);
+ 232:	87 ea       	ldi	r24, 0xA7	; 167
+ 234:	0e 94 b4 00 	call	0x168	; 0x168 <GLCD_SendCommand>
+ 238:	08 95       	ret
+
+0000023a <_exit>:
+ 23a:	f8 94       	cli
+
+0000023c <__stop_program>:
+ 23c:	ff cf       	rjmp	.-2      	; 0x23c <__stop_program>
