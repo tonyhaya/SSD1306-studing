@@ -3,4 +3,4 @@
 
 Try this markdown:
 
-![alt text](http://url/to/image.png)
+![alt text](image.png)
